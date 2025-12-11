@@ -96,47 +96,55 @@ export default function Home() {
                 </div>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="grid grid-cols-2 divide-x h-80">
-                  <div className="p-6 space-y-4 bg-white">
-                    <div className="text-xs font-bold text-red-600 uppercase tracking-widest mb-2">Before</div>
-                    <h3 className="text-2xl font-serif font-bold text-black">Official Memorandum</h3>
-                    <p className="font-serif text-black leading-relaxed">
-                      Pursuant to the directive, all official correspondence shall utilize Times New Roman. This serif typeface includes decorative tails that may impede readability.
-                    </p>
-                    <div className="font-serif text-sm text-gray-600 italic">
-                      - Department of State
-                    </div>
+                <div className="relative aspect-video w-full overflow-hidden bg-white group">
+                  {/* Before Image (Bottom Layer) */}
+                  <img 
+                    src="/state-gov-before.webp" 
+                    alt="State.gov website with Times New Roman font" 
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                  />
+                  
+                  {/* After Image (Top Layer with Clip Path) */}
+                  <div className="absolute inset-0 w-full h-full overflow-hidden transition-all duration-500 ease-in-out" style={{ clipPath: `inset(0 ${activeFont === 'calibri' ? '0' : '100%'} 0 0)` }}>
+                     <img 
+                      src="/state-gov-after.png" 
+                      alt="State.gov website with Calibri font" 
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                    />
                   </div>
-                  <div className="p-6 space-y-4 bg-white">
-                    <div className="text-xs font-bold text-green-600 uppercase tracking-widest mb-2">After (ReCalibri)</div>
-                    <h3 className={`text-2xl font-bold text-black ${activeFont === 'opendyslexic' ? 'font-opendyslexic' : activeFont === 'opensans' ? 'font-opensans' : 'font-sans'}`}>Official Memorandum</h3>
-                    <p className={`text-black leading-relaxed ${activeFont === 'opendyslexic' ? 'font-opendyslexic' : activeFont === 'opensans' ? 'font-opensans' : 'font-sans'}`}>
-                      Pursuant to the directive, all official correspondence shall utilize Times New Roman. This serif typeface includes decorative tails that may impede readability.
-                    </p>
-                    <div className={`text-sm text-gray-600 italic ${activeFont === 'opendyslexic' ? 'font-opendyslexic' : activeFont === 'opensans' ? 'font-opensans' : 'font-sans'}`}>
-                      - Department of State
+                  
+                  {/* Slider Handle (Visual Only for now, toggle based) */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="bg-black/70 text-white px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm shadow-lg transition-opacity duration-300" style={{ opacity: activeFont === 'calibri' ? 1 : 0 }}>
+                      After (Calibri)
+                    </div>
+                    <div className="bg-white/90 text-black px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm shadow-lg border border-gray-200 transition-opacity duration-300 absolute" style={{ opacity: activeFont !== 'calibri' ? 1 : 0 }}>
+                      Before (Times New Roman)
                     </div>
                   </div>
                 </div>
-                <div className="bg-muted/30 p-4 border-t flex justify-center gap-4">
-                  <button 
-                    onClick={() => setActiveFont('calibri')}
-                    className={`px-3 py-1 text-xs rounded-full transition-colors ${activeFont === 'calibri' ? 'bg-primary text-primary-foreground' : 'bg-background hover:bg-muted'}`}
-                  >
-                    Calibri
-                  </button>
-                  <button 
-                    onClick={() => setActiveFont('opensans')}
-                    className={`px-3 py-1 text-xs rounded-full transition-colors ${activeFont === 'opensans' ? 'bg-primary text-primary-foreground' : 'bg-background hover:bg-muted'}`}
-                  >
-                    Open Sans
-                  </button>
-                  <button 
-                    onClick={() => setActiveFont('opendyslexic')}
-                    className={`px-3 py-1 text-xs rounded-full transition-colors ${activeFont === 'opendyslexic' ? 'bg-primary text-primary-foreground' : 'bg-background hover:bg-muted'}`}
-                  >
-                    OpenDyslexic
-                  </button>
+                
+                {/* Interactive Controls */}
+                <div className="bg-muted/50 p-4 border-t border-border flex flex-col items-center gap-3">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Toggle to see the difference</p>
+                  <div className="flex justify-center gap-4">
+                    <button 
+                      onClick={() => setActiveFont("times")}
+                      className={`px-6 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${activeFont !== "calibri" ? "bg-black text-white shadow-lg scale-105" : "bg-white text-black hover:bg-gray-100 border border-border"}`}
+                      aria-label="Show Times New Roman version"
+                      aria-pressed={activeFont !== "calibri"}
+                    >
+                      Before
+                    </button>
+                    <button 
+                      onClick={() => setActiveFont("calibri")}
+                      className={`px-6 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${activeFont === "calibri" ? "bg-black text-white shadow-lg scale-105" : "bg-white text-black hover:bg-gray-100 border border-border"}`}
+                      aria-label="Show Calibri version"
+                      aria-pressed={activeFont === "calibri"}
+                    >
+                      After
+                    </button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
