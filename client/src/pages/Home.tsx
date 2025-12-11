@@ -24,6 +24,7 @@ export default function Home() {
               <div className="absolute top-1/2 left-0 w-full h-1 bg-red-600 -rotate-12 transform origin-center"></div>
             </div>
             <div className="font-sans text-2xl font-normal">Calibri</div>
+            <div className="ml-2 px-2 py-0.5 bg-secondary text-secondary-foreground text-[10px] uppercase tracking-widest font-bold rounded-sm">Preview</div>
           </div>
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
@@ -32,7 +33,7 @@ export default function Home() {
             <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
               <a href="/recalibri-extension.zip" download>
                 <Download className="w-4 h-4 mr-2" />
-                Download v2.0
+                Download
               </a>
             </Button>
           </div>
@@ -85,7 +86,7 @@ export default function Home() {
             </Button>
           </div>
           <p className="text-xs text-muted-foreground mt-4">
-            v2.0 • Free & Open Source • MIT License
+            Free & Open Source • MIT License
           </p>
         </div>
       </section>
