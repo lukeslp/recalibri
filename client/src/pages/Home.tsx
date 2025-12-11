@@ -1,11 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Check, Download, Eye, Github, Globe, Moon, Type, X } from "lucide-react";
+import { Check, Copy, Download, Eye, Github, Globe, Laptop, Moon, Smartphone, Type, X } from "lucide-react";
+import { toast } from "sonner";
 import { useState } from "react";
 
 export default function Home() {
   const [activeFont, setActiveFont] = useState("calibri");
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success("Link copied to clipboard!");
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-red-100 selection:text-red-900">
@@ -32,6 +38,15 @@ export default function Home() {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Notice */}
+      <div className="md:hidden bg-primary text-primary-foreground p-4 text-center text-sm">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <Laptop className="w-4 h-4" />
+          <span className="font-bold">Desktop Required</span>
+        </div>
+        <p className="opacity-90">Chrome extensions only work on desktop browsers. Please visit this site on your computer to install.</p>
+      </div>
 
       {/* Hero Section */}
       <section className="py-20 md:py-32 border-b border-border bg-secondary/30">
@@ -201,17 +216,26 @@ export default function Home() {
                 <div className="relative pl-12">
                   <div className="absolute left-0 top-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">2</div>
                   <h3 className="text-xl font-bold mb-2">Open Extensions Page</h3>
-                  <p className="text-muted-foreground">
-                    Open Chrome and navigate to <code className="bg-muted px-2 py-1 rounded text-sm">chrome://extensions/</code>
+                  <p className="text-muted-foreground mb-3">
+                    Copy this link and paste it into your Chrome address bar (browsers block direct links to settings pages):
                   </p>
+                  <div className="flex gap-2 max-w-md">
+                    <code className="bg-muted px-3 py-2 rounded text-sm flex-1 font-mono border border-border">chrome://extensions/</code>
+                    <Button variant="outline" size="sm" onClick={() => copyToClipboard("chrome://extensions/")}>
+                      <Copy className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
                 
                 <div className="relative pl-12">
                   <div className="absolute left-0 top-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">3</div>
                   <h3 className="text-xl font-bold mb-2">Enable Developer Mode</h3>
-                  <p className="text-muted-foreground">
-                    Toggle the "Developer mode" switch in the top-right corner of the page.
+                  <p className="text-muted-foreground mb-2">
+                    <strong>Crucial Step:</strong> Toggle the "Developer mode" switch in the top-right corner of the extensions page.
                   </p>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded p-3 text-xs text-yellow-800">
+                    Without this switch enabled, you won't see the "Load unpacked" button.
+                  </div>
                 </div>
                 
                 <div className="relative pl-12">
