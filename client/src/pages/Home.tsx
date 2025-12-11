@@ -8,7 +8,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 export default function Home() {
   const { theme, toggleTheme } = useTheme();
   const [activeFont, setActiveFont] = useState('Times New Roman');
-  const [testerText, setTesterText] = useState('Accessibility is not a feature, it is a right. Try reading this text in different fonts.');
+  const [testerText, setTesterText] = useState('For most people technology makes things easier, for some people technology makes things possible.');
   
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
