@@ -7,6 +7,8 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Home() {
   const { theme, toggleTheme } = useTheme();
+  const [activeFont, setActiveFont] = useState('Times New Roman');
+  const [testerText, setTesterText] = useState('Accessibility is not a feature, it is a right. Try reading this text in different fonts.');
   
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -75,6 +77,71 @@ export default function Home() {
               The State Department recently reverted to Times New Roman, a serif font that creates significant reading barriers for people with dyslexia and visual impairments. 
               <strong className="text-foreground block mt-2">ReCalibri is a simple tool that forces government websites (or all websites) back to accessible sans-serif fonts like Calibri, Open Sans, or OpenDyslexic.</strong>
             </p>
+          </div>
+
+          {/* Type Tester */}
+          <div className="max-w-3xl mx-auto mb-12">
+            <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
+              <div className="bg-muted/50 p-4 border-b border-border flex flex-wrap items-center justify-between gap-4">
+                <div className="text-sm font-medium uppercase tracking-wider text-muted-foreground">Type Tester</div>
+                <div className="flex gap-2">
+                  <Button 
+                    variant={activeFont === 'Times New Roman' ? "default" : "outline"} 
+                    size="sm" 
+                    onClick={() => setActiveFont('Times New Roman')}
+                    className={activeFont === 'Times New Roman' ? "bg-red-600 hover:bg-red-700" : ""}
+                  >
+                    Times New Roman
+                  </Button>
+                  <Button 
+                    variant={activeFont === 'Calibri' ? "default" : "outline"} 
+                    size="sm" 
+                    onClick={() => setActiveFont('Calibri')}
+                  >
+                    Calibri
+                  </Button>
+                  <Button 
+                    variant={activeFont === 'Open Sans' ? "default" : "outline"} 
+                    size="sm" 
+                    onClick={() => setActiveFont('Open Sans')}
+                  >
+                    Open Sans
+                  </Button>
+                  <Button 
+                    variant={activeFont === 'OpenDyslexic' ? "default" : "outline"} 
+                    size="sm" 
+                    onClick={() => setActiveFont('OpenDyslexic')}
+                  >
+                    OpenDyslexic
+                  </Button>
+                </div>
+              </div>
+              <div className="p-8 min-h-[200px] flex items-center justify-center bg-background transition-all duration-300">
+                <textarea 
+                  className="w-full h-full min-h-[150px] text-2xl md:text-3xl bg-transparent border-none resize-none focus:ring-0 text-center placeholder:text-muted-foreground/50"
+                  style={{ 
+                    fontFamily: activeFont === 'OpenDyslexic' ? 'Comic Sans MS, sans-serif' : activeFont,
+                    fontWeight: activeFont === 'Times New Roman' ? 'normal' : '400'
+                  }}
+                  value={testerText}
+                  onChange={(e) => setTesterText(e.target.value)}
+                  spellCheck={false}
+                />
+              </div>
+              <div className="bg-muted/30 p-3 text-xs text-center text-muted-foreground border-t border-border">
+                {activeFont === 'Times New Roman' ? (
+                  <span className="flex items-center justify-center gap-2 text-red-600 font-medium">
+                    <span className="w-2 h-2 rounded-full bg-red-600"></span>
+                    Harder to read for many users
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-2 text-green-600 font-medium">
+                    <Check className="w-3 h-3" />
+                    Accessible and legible
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
