@@ -32,12 +32,6 @@ export default function Home() {
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
               {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
-            <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-              <a href="/recalibri-extension.zip" download>
-                <Download className="w-4 h-4 mr-2" />
-                Download
-              </a>
-            </Button>
           </div>
         </div>
       </nav>
@@ -94,9 +88,9 @@ export default function Home() {
                     Times New Roman
                   </Button>
                   <Button 
-                    variant={activeFont === 'Calibri' ? "default" : "outline"} 
+                    variant={activeFont === 'Carlito' ? "default" : "outline"} 
                     size="sm" 
-                    onClick={() => setActiveFont('Calibri')}
+                    onClick={() => setActiveFont('Carlito')}
                   >
                     Calibri
                   </Button>
@@ -117,15 +111,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-8 min-h-[200px] flex items-center justify-center bg-background transition-all duration-300">
-                <textarea 
+                  <textarea 
                   className="w-full h-full min-h-[150px] text-2xl md:text-3xl bg-transparent border-none resize-none focus:ring-0 text-center placeholder:text-muted-foreground/50"
                   style={{ 
-                    fontFamily: activeFont === 'OpenDyslexic' ? 'Comic Sans MS, sans-serif' : activeFont,
+                    fontFamily: activeFont === 'OpenDyslexic' ? 'OpenDyslexic, Comic Sans MS, sans-serif' : activeFont,
                     fontWeight: activeFont === 'Times New Roman' ? 'normal' : '400'
                   }}
                   value={testerText}
                   onChange={(e) => setTesterText(e.target.value)}
                   spellCheck={false}
+                  autoFocus={false}
                 />
               </div>
               <div className="bg-muted/30 p-3 text-xs text-center text-muted-foreground border-t border-border">
