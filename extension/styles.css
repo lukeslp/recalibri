@@ -1,0 +1,39 @@
+/**
+ * ReCalibri - Chrome Extension
+ * Font replacement styles
+ * 
+ * Author: Luke Steuber (dr.eamer.dev)
+ * Year: 2025
+ * License: MIT
+ */
+
+/* Calibri font override */
+html.recalibri-active[data-recalibri-font="calibri"] * {
+  font-family: Calibri, sans-serif !important;
+}
+
+/* Open Sans font override */
+html.recalibri-active[data-recalibri-font="opensans"] * {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* OpenDyslexic font override */
+html.recalibri-active[data-recalibri-font="opendyslexic"] * {
+  font-family: OpenDyslexic, "Comic Sans MS", sans-serif !important;
+}
+
+/* Specifically target Times New Roman in inline styles */
+html.recalibri-active *[style*="Times New Roman"],
+html.recalibri-active *[style*="times new roman"],
+html.recalibri-active *[style*="Times"],
+html.recalibri-active *[style*="times"],
+html.recalibri-active *[style*="serif"] {
+  font-family: inherit !important;
+}
+
+/* Override common CSS classes that might use Times */
+html.recalibri-active .times,
+html.recalibri-active .times-new-roman,
+html.recalibri-active .serif {
+  font-family: inherit !important;
+}

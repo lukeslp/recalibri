@@ -120,7 +120,6 @@ export default function Home() {
                   value={testerText}
                   onChange={(e) => setTesterText(e.target.value)}
                   spellCheck={false}
-                  autoFocus={false}
                 />
               </div>
               <div className="bg-muted/30 p-3 text-xs text-center text-muted-foreground border-t border-border">

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReCalibri Settings</title>
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f9f9f9;
+      --bg-hover: #f0f0f0;
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --border-color: #e0e0e0;
+      --accent-color: #4CAF50;
+      --button-bg: #f5f5f5;
+      --button-hover: #e8e8e8;
+      --focus-ring: #2196F3;
+      --selected-bg: #e8f5e9;
+      --selected-border: #4CAF50;
+      --logo-strike: #E63946;
+    }
+    
+    [data-theme="dark"] {
+      --bg-primary: #1e1e1e;
+      --bg-secondary: #2d2d2d;
+      --bg-hover: #3a3a3a;
+      --text-primary: #e0e0e0;
+      --text-secondary: #b0b0b0;
+      --border-color: #404040;
+      --accent-color: #66BB6A;
+      --button-bg: #2d2d2d;
+      --button-hover: #3a3a3a;
+      --focus-ring: #64B5F6;
+      --selected-bg: #1b5e20;
+      --selected-border: #66BB6A;
+      --logo-strike: #FF6B6B;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 380px;
+      padding: 0;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    /* Font size classes applied to body */
+    body.font-normal { font-size: 14px; }
+    body.font-large { font-size: 16px; }
+    body.font-xlarge { font-size: 18px; }
+    
+    .header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.4em;
+      margin: 0;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-re {
+      font-family: 'Times New Roman', serif;
+      position: relative;
+      margin-right: 2px;
+    }
+
+    .logo-re::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 2px;
+      background-color: var(--logo-strike);
+      transform: rotate(-15deg);
+    }
+
+    .logo-calibri {
+      font-family: 'Calibri', sans-serif;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .icon-button {
+      background: var(--button-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      transition: all 0.2s;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    
+    .icon-button:hover {
+      background: var(--button-hover);
+    }
+    
+    .icon-button:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+    
+    .icon-button:active {
+      transform: scale(0.95);
+    }
+    
+    .content {
+      padding: 20px;
+    }
+    
+    .section {
+      margin-bottom: 24px;
+    }
+    
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      font-size: 0.9em;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    
+    /* Make the label the container for full clickability */
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 8px;
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+    
+    .radio-option:hover {
+      background-color: var(--bg-hover);
+      border-color: var(--border-color);
+    }
+    
+    /* Selected state styling */
+    .radio-option.selected {
+      background-color: var(--selected-bg);
+      border-color: var(--selected-border);
+      box-shadow: 0 0 0 1px var(--selected-border);
+    }
+    
+    .radio-option:focus-within {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+    
+    /* Hide actual radio button but keep accessible */
+    .radio-option input[type="radio"] {
+      opacity: 0;
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+    
+    .option-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .option-label {
+      font-weight: 500;
+      font-size: 1em;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      display: block;
+    }
+    
+    .option-description {
+      font-size: 0.85em;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      display: block;
+    }
+    
+    .font-selector {
+      display: grid;
+      gap: 8px;
+    }
+    
+    .info-box {
+      background-color: var(--bg-secondary);
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-color);
+      font-size: 0.85em;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-top: 20px;
+    }
+    
+    .info-box strong {
+      color: var(--text-primary);
+    }
+    
+    .status {
+      padding: 10px;
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      border-radius: 6px;
+      font-size: 0.9em;
+      text-align: center;
+      margin-top: 16px;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+    
+    [data-theme="dark"] .status {
+      background-color: #1b5e20;
+      color: #a5d6a7;
+    }
+    
+    .status.show {
+      display: block;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.8em;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+    
+    .footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* High contrast focus styles for accessibility */
+    *:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="font-normal">
+  <div class="header" role="banner">
+    <div class="logo">
+      <span class="logo-re">Re</span><span class="logo-calibri">Calibri</span>
+    </div>
+    <div class="controls" role="group" aria-label="Display settings">
+      <button class="icon-button" id="fontSizeBtn" title="Increase font size" aria-label="Increase font size">A+</button>
+      <button class="icon-button" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+      <a href="https://dr.eamer.dev/downloads/recalibri" target="_blank" class="icon-button" title="Help & Support" aria-label="Help and Support">?</a>
+    </div>
+  </div>
+  
+  <main class="content" role="main">
+    <div class="section" role="group" aria-labelledby="scope-title">
+      <div id="scope-title" class="section-title">Scope</div>
+      
+      <label class="radio-option" id="option-gov">
+        <input type="radio" id="govOnly" name="scope" value="gov">
+        <span class="option-content">
+          <span class="option-label">.gov sites only</span>
+          <span class="option-description">Apply accessible fonts exclusively to government websites</span>
+        </span>
+      </label>
+      
+      <label class="radio-option" id="option-global">
+        <input type="radio" id="global" name="scope" value="global">
+        <span class="option-content">
+          <span class="option-label">All websites</span>
+          <span class="option-description">Apply accessible fonts to every website you visit</span>
+        </span>
+      </label>
+    </div>
+    
+    <div class="section" role="group" aria-labelledby="font-title">
+      <div id="font-title" class="section-title">Replacement Font</div>
+      <div class="font-selector">
+        <label class="radio-option" id="option-calibri">
+          <input type="radio" id="fontCalibri" name="font" value="calibri">
+          <span class="option-content">
+            <span class="option-label" style="font-family: Calibri, sans-serif;">Calibri</span>
+            <span class="option-description">Clean, modern sans-serif font. Recommended by accessibility experts.</span>
+          </span>
+        </label>
+        
+        <label class="radio-option" id="option-opensans">
+          <input type="radio" id="fontOpenSans" name="font" value="opensans">
+          <span class="option-content">
+            <span class="option-label" style="font-family: 'Open Sans', sans-serif;">Open Sans</span>
+            <span class="option-description">Highly legible, optimized for screen reading and accessibility.</span>
+          </span>
+        </label>
+        
+        <label class="radio-option" id="option-opendyslexic">
+          <input type="radio" id="fontOpenDyslexic" name="font" value="opendyslexic">
+          <span class="option-content">
+            <span class="option-label" style="font-family: 'Comic Sans MS', sans-serif;">OpenDyslexic</span>
+            <span class="option-description">Specially designed to improve readability for people with dyslexia.</span>
+          </span>
+        </label>
+      </div>
+    </div>
+    
+    <div class="info-box" role="note">
+      <strong>Why this matters:</strong> Sans-serif fonts like these are more accessible for people with visual disabilities, dyslexia, and reading difficulties. Times New Roman's decorative serifs can create barriers to readability.
+    </div>
+    
+    <div class="status" id="status" role="status" aria-live="polite">✓ Settings saved!</div>
+  </main>
+  
+  <footer class="footer" role="contentinfo">
+    Restoring accessibility, one font at a time. <br>
+    By <a href="https://dr.eamer.dev" target="_blank" rel="noopener noreferrer">dr.eamer.dev</a>
+  </footer>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

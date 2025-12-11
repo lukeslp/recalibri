@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Replacement Test Page</title>
+    <style>
+        body {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .times-inline {
+            font-family: "Times New Roman", Times, serif;
+        }
+        
+        .times-style {
+            font-family: 'Times New Roman';
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        h2 {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .info {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Times New Roman to Calibri Test Page</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Inline Style (Times New Roman)</h2>
+        <p class="times-inline">
+            This paragraph uses Times New Roman font via inline CSS class. 
+            After the extension is active, this should display in Calibri.
+            The quick brown fox jumps over the lazy dog. 0123456789.
+        </p>
+        <div class="info">Font: Times New Roman (via CSS class)</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Style Attribute (Times New Roman)</h2>
+        <p style="font-family: 'Times New Roman', serif;">
+            This paragraph uses Times New Roman font via style attribute.
+            After the extension is active, this should display in Calibri.
+            The quick brown fox jumps over the lazy dog. 0123456789.
+        </p>
+        <div class="info">Font: Times New Roman (via style attribute)</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 3: CSS Class (Times New Roman)</h2>
+        <p class="times-style">
+            This paragraph uses Times New Roman font via CSS class.
+            After the extension is active, this should display in Calibri.
+            The quick brown fox jumps over the lazy dog. 0123456789.
+        </p>
+        <div class="info">Font: Times New Roman (via CSS class)</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 4: Default Font (Should not change)</h2>
+        <p>
+            This paragraph uses the default browser font (not Times New Roman).
+            This should remain unchanged by the extension.
+            The quick brown fox jumps over the lazy dog. 0123456789.
+        </p>
+        <div class="info">Font: Default browser font</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 5: Dynamically Added Content</h2>
+        <div id="dynamic-content"></div>
+        <button onclick="addDynamicContent()">Add Dynamic Times New Roman Text</button>
+        <div class="info">Click the button to test dynamic content handling</div>
+    </div>
+    
+    <script>
+        function addDynamicContent() {
+            const container = document.getElementById('dynamic-content');
+            const p = document.createElement('p');
+            p.style.fontFamily = 'Times New Roman, serif';
+            p.textContent = 'This is dynamically added Times New Roman text. It should be converted to Calibri by the extension.';
+            container.appendChild(p);
+        }
+    </script>
+    
+    <div class="test-section">
+        <h2>Instructions</h2>
+        <ol>
+            <li>Load this page in Chrome</li>
+            <li>Install the "Times to Calibri" extension</li>
+            <li>For .gov testing: Save this file with a .gov domain simulation or test on an actual .gov site</li>
+            <li>For global testing: Select "All websites" in the extension popup</li>
+            <li>Verify that all Times New Roman text changes to Calibri</li>
+            <li>Test the dynamic content button to ensure real-time monitoring works</li>
+        </ol>
+    </div>
+</body>
+</html>
