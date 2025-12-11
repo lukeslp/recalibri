@@ -140,12 +140,7 @@ export default function Home() {
           </div>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" className="text-base px-10 h-14 shadow-xl hover:scale-105 transition-transform" asChild>
-              <a href="/recalibri-extension.zip" download>
-                <Download className="w-6 h-6 mr-2" />
-                Download Extension ZIP
-              </a>
-            </Button>
+            {/* Download button removed to encourage reading instructions */}
           </div>
           <p className="text-xs text-muted-foreground mt-4">
             Free & Open Source • MIT License
