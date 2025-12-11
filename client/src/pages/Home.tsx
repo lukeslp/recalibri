@@ -254,7 +254,7 @@ export default function Home() {
       <footer className="py-12 border-t border-border bg-secondary/30 text-center">
         <div className="container mx-auto px-4">
           <p className="text-muted-foreground mb-4">
-            Built with ❤️ for accessibility by <a href="https://dr.eamer.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">dr.eamer.dev</a>
+            Made with passion by <a href="https://dr.eamer.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Luke Steuber</a>
           </p>
           <p className="text-xs text-muted-foreground opacity-70">
             Released under MIT License • 2025
