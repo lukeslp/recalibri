@@ -46,17 +46,10 @@
   --font-serif: "Times New Roman", Times, serif;
   --font-mono: "JetBrains Mono", monospace;
   --font-opensans: "Open Sans", sans-serif;
-  --font-opendyslexic: "OpenDyslexic", sans-serif;
+  --font-opendyslexic: "Open-Dyslexic", sans-serif;
 }
 
-/* Load OpenDyslexic font */
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@3.0.0/fonts/OpenDyslexic-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+/* OpenDyslexic font is loaded via CDNFonts link tag in index.html */
 
 :root {
   /* Swiss Style Palette: High contrast B&W with Red Accent */

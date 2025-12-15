@@ -114,7 +114,7 @@ export default function Home() {
                   <textarea 
                   className="w-full h-full min-h-[150px] text-2xl md:text-3xl bg-transparent border-none resize-none focus:ring-0 text-center placeholder:text-muted-foreground/50"
                   style={{ 
-                    fontFamily: activeFont === 'OpenDyslexic' ? 'OpenDyslexic, Comic Sans MS, sans-serif' : activeFont,
+                    fontFamily: activeFont === 'OpenDyslexic' ? '"Open-Dyslexic", sans-serif' : activeFont,
                     fontWeight: activeFont === 'Times New Roman' ? 'normal' : '400'
                   }}
                   value={testerText}
