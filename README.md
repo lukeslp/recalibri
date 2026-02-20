@@ -9,6 +9,8 @@ Replace Times New Roman with fonts that are actually readable.
 
 ---
 
+![ReCalibri extension popup](https://raw.githubusercontent.com/lukeslp/recalibri/main/screenshot.png)
+
 In December 2025, the U.S. State Department reversed a 2023 accessibility directive that had switched government documents from Times New Roman to Calibri. The original switch was made specifically to help people with visual disabilities and dyslexia. ReCalibri puts it back.
 
 **[Download for Chrome](https://dr.eamer.dev/downloads/recalibri)** · **[Download for Firefox](https://dr.eamer.dev/downloads/recalibri)**
