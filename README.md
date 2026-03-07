@@ -81,6 +81,4 @@ MIT — [LICENSE](extension/LICENSE)
 
 ## Author
 
-**Luke Steuber**
-- Website: [dr.eamer.dev](https://dr.eamer.dev)
-- Bluesky: [@lukesteuber.com](https://bsky.app/profile/lukesteuber.com)
+**Luke Steuber** · [lukesteuber.com](https://lukesteuber.com) · [@lukesteuber.com](https://bsky.app/profile/lukesteuber.com)
